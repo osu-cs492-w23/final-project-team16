@@ -22,7 +22,6 @@ class OpenAPIViewModel: ViewModel() {
     fun fixTextMistakes(
         prompt: String
     ) {
-
         viewModelScope.launch {
             _isLoading.value = true
             val result = repository.fixTextMistakes(prompt)
