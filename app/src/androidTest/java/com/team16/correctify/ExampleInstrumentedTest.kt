@@ -1,4 +1,4 @@
-package com.example.correctify
+package com.team16.correctify
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

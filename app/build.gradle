@@ -1,20 +1,28 @@
+buildscript {
+    ext {
+        ktor_version = "2.2.4"
+    }
+}
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    namespace 'com.example.correctify'
+    namespace 'com.team16.correctify'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.correctify"
+        applicationId "com.team16.correctify"
         minSdk 24
         targetSdk 33
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "OPENAI_API_KEY", OPENAI_API_KEY)
     }
 
     buildTypes {
@@ -33,10 +41,15 @@ android {
     buildFeatures {
         viewBinding true
     }
+    packagingOptions {
+        exclude 'META-INF/kotlinx-io.kotlin_module'
+        exclude 'META-INF/atomicfu.kotlin_module'
+        exclude 'META-INF/kotlinx-coroutines-io.kotlin_module'
+        exclude 'META-INF/kotlinx-coroutines-core.kotlin_module'
+    }
 }
 
 dependencies {
-
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
@@ -46,4 +59,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    implementation "com.aallam.openai:openai-client:3.1.0"
+    implementation("io.ktor:ktor-client-android:$ktor_version")
+    implementation "io.ktor:ktor-utils-jvm:$ktor_version"
+    implementation("io.ktor:ktor-client-okhttp:$ktor_version")
 }

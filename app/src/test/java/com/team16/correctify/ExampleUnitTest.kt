@@ -1,4 +1,4 @@
-package com.example.correctify
+package com.team16.correctify
 
 import org.junit.Test
 
