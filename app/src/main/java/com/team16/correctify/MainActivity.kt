@@ -8,11 +8,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.aallam.openai.client.OpenAI
 import com.google.android.material.snackbar.Snackbar
 import com.team16.correctify.databinding.ActivityMainBinding
-import io.ktor.client.*
-import io.ktor.client.engine.okhttp.*
 
 /* To use your own OpenAI API key here, create a file called `gradle.properties` in your
 * GRADLE_USER_HOME directory (this will usually be `$HOME/.gradle/` in MacOS/Linux and
@@ -26,18 +23,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-
-    val client = HttpClient(OkHttp) {
-        engine {
-            // this: OkHttpConfig
-            config {
-                // this: OkHttpClient.Builder
-                followRedirects(true)
-                // ...
-            }
-        }
-    }
-    private val openAI = OpenAI(OPENAI_KEY)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
