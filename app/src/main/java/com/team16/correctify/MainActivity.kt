@@ -1,22 +1,18 @@
 package com.team16.correctify
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
 import com.aallam.openai.client.OpenAI
+import com.google.android.material.snackbar.Snackbar
 import com.team16.correctify.databinding.ActivityMainBinding
-import io.ktor.client.engine.android.*
 import io.ktor.client.*
 import io.ktor.client.engine.okhttp.*
-import io.ktor.client.*
-import java.net.Proxy
-import java.net.InetSocketAddress
 
 /* To use your own OpenAI API key here, create a file called `gradle.properties` in your
 * GRADLE_USER_HOME directory (this will usually be `$HOME/.gradle/` in MacOS/Linux and
