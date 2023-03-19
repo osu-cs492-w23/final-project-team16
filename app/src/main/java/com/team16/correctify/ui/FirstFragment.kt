@@ -1,6 +1,8 @@
 package com.team16.correctify.ui
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +17,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.team16.correctify.R
 import com.team16.correctify.data.LoadingStatus
 import com.team16.correctify.databinding.FragmentFirstBinding
+
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -47,20 +50,40 @@ class FirstFragment : Fragment() {
             viewModel.fixTextMistakes("Wat day of the wek is it")
         }*/
 
-        // bind to submit button
         val submitButton = view.findViewById<Button>(R.id.submit_button)
+        val clearButton = view.findViewById<Button>(R.id.clear_button)
         val promptTextView = view.findViewById<TextInputLayout>(R.id.input_text_layout)
         val resultText = view.findViewById<TextView>(R.id.result_text)
         val loadingIndicator: CircularProgressIndicator = view.findViewById(R.id.loading_indicator)
+
+        clearButton.isEnabled = false
 
         submitButton.setOnClickListener {
             val prompt = promptTextView?.editText?.text.toString()
             if (prompt.isNotEmpty()) {
                 viewModel.fixTextMistakes(prompt)
             } else {
-                resultText.text = "Please enter a prompt"
+                resultText.text = getString(R.string.empty_prompt)
             }
         }
+
+        clearButton.setOnClickListener {
+            promptTextView.editText?.text?.clear()
+            resultText.text = ""
+        }
+
+        // disable clear button while there is text in the prompt
+        promptTextView.editText?.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                clearButton.isEnabled = s?.isNotEmpty()!!
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
 
         viewModel.loadingStatus.observe(this.viewLifecycleOwner) { uiState ->
             when (uiState) {
