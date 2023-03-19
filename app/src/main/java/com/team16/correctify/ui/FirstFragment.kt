@@ -11,7 +11,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.textfield.TextInputLayout
 import com.team16.correctify.R
@@ -55,7 +54,9 @@ class FirstFragment : Fragment() {
         val promptTextView = view.findViewById<TextInputLayout>(R.id.input_text_layout)
         val resultText = view.findViewById<TextView>(R.id.result_text)
         val loadingIndicator: CircularProgressIndicator = view.findViewById(R.id.loading_indicator)
+        val wordCount: TextView = view.findViewById(R.id.word_count)
 
+        wordCount.text = getString(R.string.word_count, 0, 4000)
         clearButton.isEnabled = false
 
         submitButton.setOnClickListener {
@@ -72,10 +73,21 @@ class FirstFragment : Fragment() {
             resultText.text = ""
         }
 
-        // disable clear button while there is text in the prompt
         promptTextView.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 clearButton.isEnabled = s?.isNotEmpty()!!
+
+                val words = s.toString().trim()
+                val numberOfInputWords = words.split("\\s+".toRegex()).size
+                wordCount.text = getString(R.string.word_count, numberOfInputWords, 4000)
+
+                if (numberOfInputWords > 4000) {
+                    wordCount.setTextColor(resources.getColor(R.color.red_500))
+                    submitButton.isEnabled = false
+                } else {
+                    wordCount.setTextColor(resources.getColor(R.color.gray_500))
+                    submitButton.isEnabled = true
+                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -108,10 +120,6 @@ class FirstFragment : Fragment() {
                     Log.d("FinishedMistakes", "Request failed")
                 }
             }
-        }
-
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
     }
 
