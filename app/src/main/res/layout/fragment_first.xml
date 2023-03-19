@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_text_layout"
@@ -23,8 +23,8 @@
             android:hint="@string/enter_text"
             android:inputType="textMultiLine"
             android:lines="6"
-            android:minLines="6"
             android:maxLines="8"
+            android:minLines="6"
             android:scrollbars="vertical" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -47,15 +47,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/submit_button">
 
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/loading_indicator"
+                android:layout_width="194dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:visibility="invisible" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
         <TextView
             android:id="@+id/result_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="16sp"
             android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="16sp"
             tools:text="Your processed text will appear here." />
     </androidx.cardview.widget.CardView>
+
     <Button
         android:id="@+id/button_first"
         android:layout_width="wrap_content"

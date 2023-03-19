@@ -1,4 +1,4 @@
-package com.team16.correctify
+package com.team16.correctify.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.team16.correctify.R
 import com.team16.correctify.databinding.FragmentSecondBinding
 
 /**

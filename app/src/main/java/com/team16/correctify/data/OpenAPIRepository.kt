@@ -1,4 +1,4 @@
-package com.team16.correctify
+package com.team16.correctify.data
 
 import android.util.Log
 import com.aallam.openai.api.BetaOpenAI

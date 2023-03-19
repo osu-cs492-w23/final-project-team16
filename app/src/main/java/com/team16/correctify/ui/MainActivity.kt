@@ -1,4 +1,4 @@
-package com.team16.correctify
+package com.team16.correctify.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +9,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.snackbar.Snackbar
+import com.team16.correctify.BuildConfig
+import com.team16.correctify.R
 import com.team16.correctify.databinding.ActivityMainBinding
 
 /* To use your own OpenAI API key here, create a file called `gradle.properties` in your
