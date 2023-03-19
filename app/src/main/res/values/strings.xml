@@ -2,10 +2,10 @@
     <string name="app_name">Correctify</string>
     <string name="action_settings">Settings</string>
 
-    <string name="hello_first_fragment">Hi!\nI\'m Correctify, an AI that will correct your writing
-        mistakes. \n\nYour processed text will appear here.</string>
+    <string name="hello_first_fragment">Hi!\nI\'m Correctify, an AI that will correct your writing mistakes. \n\nYour processed text will appear here.</string>
     <string name="enter_text">Enter your text here</string>
     <string name="submit">Submit</string>
     <string name="clear">Clear</string>
     <string name="empty_prompt">Please enter a prompt</string>
+    <string name="word_count">Word Count: %1$d/%2$d</string>
 </resources>

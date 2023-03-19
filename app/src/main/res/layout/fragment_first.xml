@@ -30,12 +30,16 @@
             android:scrollbars="vertical" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/clear_button"
+    <TextView
+        android:id="@+id/word_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/clear"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="14dp"
+        android:text="@string/word_count"
+        android:textColor="@color/gray_500"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/input_text_layout" />
 
     <com.google.android.material.button.MaterialButton
@@ -46,6 +50,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/input_text_layout" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/clear_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_text_layout" />
+
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/loading_indicator"
@@ -80,5 +93,5 @@
             android:textIsSelectable="true"
             android:textSize="16sp" />
     </androidx.cardview.widget.CardView>
-    
+
 </androidx.constraintlayout.widget.ConstraintLayout>
