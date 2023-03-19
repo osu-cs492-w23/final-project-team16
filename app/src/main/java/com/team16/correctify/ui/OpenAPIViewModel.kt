@@ -10,12 +10,12 @@ import com.team16.correctify.data.OpenAPIRepository
 import kotlinx.coroutines.launch
 
 
-class OpenAPIViewModel: ViewModel() {
+class OpenAPIViewModel : ViewModel() {
     private val repository = OpenAPIRepository(OpenAI(OPENAI_KEY))
 
     private val _lastResponse = MutableLiveData<String>(null)
     private val _loadingStatus =
-        MutableLiveData<LoadingStatus>(LoadingStatus.SUCCESS)
+        MutableLiveData(LoadingStatus.SUCCESS)
     private val _errorText = MutableLiveData<String>(null)
 
     val lastResponse: LiveData<String> = _lastResponse
