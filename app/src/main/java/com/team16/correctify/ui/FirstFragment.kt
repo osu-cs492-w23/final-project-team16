@@ -66,6 +66,7 @@ class FirstFragment : Fragment() {
             when (uiState) {
                 LoadingStatus.LOADING -> {
                     loadingIndicator.visibility = View.VISIBLE
+                    submitButton.isEnabled = false
                 }
                 LoadingStatus.SUCCESS -> {
                     Log.d(
@@ -74,6 +75,7 @@ class FirstFragment : Fragment() {
                     )
 
                     loadingIndicator.visibility = View.INVISIBLE
+                    submitButton.isEnabled = true
 
                     if (viewModel.lastResponse.value != null) {
                         resultText.text = viewModel.lastResponse.value.toString()
