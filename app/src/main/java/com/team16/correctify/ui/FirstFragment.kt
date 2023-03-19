@@ -1,16 +1,19 @@
-package com.team16.correctify
+package com.team16.correctify.ui
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.textfield.TextInputLayout
+import com.team16.correctify.R
+import com.team16.correctify.data.LoadingStatus
 import com.team16.correctify.databinding.FragmentFirstBinding
 
 /**
@@ -28,7 +31,7 @@ class FirstFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
 
@@ -47,21 +50,38 @@ class FirstFragment : Fragment() {
         // bind to submit button
         val submitButton = view.findViewById<Button>(R.id.submit_button)
         val promptTextView = view.findViewById<TextInputLayout>(R.id.input_text_layout)
+        val resultText = view.findViewById<TextView>(R.id.result_text)
+        val loadingIndicator: CircularProgressIndicator = view.findViewById(R.id.loading_indicator)
 
         submitButton.setOnClickListener {
             val prompt = promptTextView?.editText?.text.toString()
-            viewModel.fixTextMistakes(prompt)
+            if (prompt.isNotEmpty()) {
+                viewModel.fixTextMistakes(prompt)
+            } else {
+                resultText.text = "Please enter a prompt"
+            }
         }
 
-        val resultText = view.findViewById<TextView>(R.id.result_text)
-        viewModel.isLoading.observe(this.viewLifecycleOwner) { state ->
-            if (!state) {
-                Log.d("FinishedMistakes", "Response received: " + viewModel.lastResponse.value.toString())
-                if (viewModel.lastResponse.value != null) {
-                    resultText.text = viewModel.lastResponse.value.toString()
+        viewModel.loadingStatus.observe(this.viewLifecycleOwner) { uiState ->
+            when (uiState) {
+                LoadingStatus.LOADING -> {
+                    loadingIndicator.visibility = View.VISIBLE
                 }
-            } else {
-                Log.d("FinishedMistakes", "Request started")
+                LoadingStatus.SUCCESS -> {
+                    Log.d(
+                        "FinishedMistakes",
+                        "Response received: " + viewModel.lastResponse.value.toString()
+                    )
+
+                    loadingIndicator.visibility = View.INVISIBLE
+
+                    if (viewModel.lastResponse.value != null) {
+                        resultText.text = viewModel.lastResponse.value.toString()
+                    }
+                }
+                else -> {
+                    Log.d("FinishedMistakes", "Request failed")
+                }
             }
         }
 
