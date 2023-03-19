@@ -20,12 +20,13 @@ class OpenAPIRepository(
     suspend fun fixTextMistakes(
         prompt: String
     ): String {
-        val instructions: String = "You are an AI grammar and punctuation system named Correctify." +
-                "The user will provide a prompt and you will need to fix the " +
-                "writing mistakes in the prompt. Do not return anything in your response " +
-                "besides either the fixed prompt or the original prompt. If there are no mistakes in the prompt, return the original" +
-                "prompt. If you are unsure of how to fix a mistake, return the original prompt." +
-                "If you are unable to fix the text for any reason, return the original prompt."
+        val instructions: String =
+            "You are an AI grammar and punctuation system named Correctify." +
+                    "The user will provide a prompt and you will need to fix the " +
+                    "writing mistakes in the prompt. Do not return anything in your response " +
+                    "besides either the fixed prompt or the original prompt. If there are no mistakes in the prompt, return the original" +
+                    "prompt. If you are unsure of how to fix a mistake, return the original prompt." +
+                    "If you are unable to fix the text for any reason, return the original prompt."
 
         val chatCompletionRequest = ChatCompletionRequest(
             model = ModelId("gpt-3.5-turbo"),
@@ -88,9 +89,14 @@ class OpenAPIRepository(
             )
         )
 
-        val completion: ChatCompletion = openAI.chatCompletion(chatCompletionRequest)
+        try {
+            val completion: ChatCompletion = openAI.chatCompletion(chatCompletionRequest)
+            return completion.choices[0].message!!.content
+        } catch (e: Exception) {
+            Log.d("OpenAPI", "Error: ${e.message}")
+        }
 
-        return completion.choices[0].message!!.content
+        return prompt
     }
 
     suspend fun fixTextMistakesDavinci(
