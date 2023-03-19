@@ -40,6 +40,8 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, ".txt Output File Has Been Saved!", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
+        supportActionBar?.title = "Correctify"
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
