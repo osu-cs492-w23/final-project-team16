@@ -39,8 +39,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Output text has been saved to .txt file!", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, getString(R.string.text_saved), Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+            // TODO: save to storage
         }
 
         supportActionBar?.title = getString(R.string.app_name)

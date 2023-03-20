@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.progressindicator.CircularProgressIndicator
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.team16.correctify.R
 import com.team16.correctify.data.LoadingStatus
@@ -55,7 +56,8 @@ class FirstFragment : Fragment() {
             if (prompt.isNotEmpty()) {
                 viewModel.fixTextMistakes(prompt)
             } else {
-                resultText.text = getString(R.string.empty_prompt)
+                Snackbar.make(view, getString(R.string.empty_prompt), Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
             }
         }
 
@@ -108,7 +110,7 @@ class FirstFragment : Fragment() {
                     }
                 }
                 else -> {
-                    Log.d("FinishedMistakes", "Request failed")
+                    Log.d("FinishedMistakes", "Request failed?")
                 }
             }
         }
