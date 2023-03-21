@@ -1,4 +1,4 @@
-package com.team16.correctify
+package com.team16.correctify.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +9,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.snackbar.Snackbar
+import com.team16.correctify.BuildConfig
+import com.team16.correctify.R
 import com.team16.correctify.databinding.ActivityMainBinding
 
 /* To use your own OpenAI API key here, create a file called `gradle.properties` in your
@@ -37,23 +39,20 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, ".txt Output File Has Been Saved!", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, getString(R.string.text_saved), Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+            // TODO: save to storage
         }
 
-        supportActionBar?.title = "Correctify"
+        supportActionBar?.title = getString(R.string.app_name)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
