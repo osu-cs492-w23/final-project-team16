@@ -8,6 +8,16 @@
     <string name="clear">Clear</string>
     <string name="empty_prompt">Please enter a prompt</string>
     <string name="word_count">Word Count: %1$d/%2$d</string>
+    <string name="model_name">Model: %1$s</string>
     <string name="text_saved">Output text has been saved to .txt file!</string>
     <string name="save_text_description">Save text to file</string>
+
+    <string name="pref_model_gpt">GPT 3.5 (recommended)</string>
+    <string name="pref_model_davinci">DaVinci (not recommended)</string>
+    <string name="pref_model_title">Model</string>
+    <string name="pref_model_key" translatable="false">
+      model
+    </string>
+    <string name="pref_model_default">GPT</string>
+
 </resources>

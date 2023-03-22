@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.preference.PreferenceManager
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
@@ -47,14 +48,25 @@ class FirstFragment : Fragment() {
         val resultText = view.findViewById<TextView>(R.id.result_text)
         val loadingIndicator: CircularProgressIndicator = view.findViewById(R.id.loading_indicator)
         val wordCount: TextView = view.findViewById(R.id.word_count)
+        val modelNameLabel: TextView = view.findViewById(R.id.model_name)
+
+        val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val modelName = prefs.getString("model", null)
 
         wordCount.text = getString(R.string.word_count, 0, 4000)
         clearButton.isEnabled = false
 
+        modelNameLabel.text = getString(R.string.model_name, modelName)
+
         submitButton.setOnClickListener {
             val prompt = promptTextView?.editText?.text.toString()
             if (prompt.isNotEmpty()) {
-                viewModel.fixTextMistakes(prompt)
+                if(modelName == "GPT") {
+                    viewModel.fixTextMistakes(prompt)
+                }
+                else {
+                    viewModel.fixTextMistakesDavinci(prompt)
+                }
             } else {
                 Snackbar.make(view, getString(R.string.empty_prompt), Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
@@ -115,6 +127,11 @@ class FirstFragment : Fragment() {
             }
         }
     }
+
+//    override fun onResume() {
+//        super.onResume()
+//
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

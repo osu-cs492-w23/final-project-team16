@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_model_entries">
+        <item>@string/pref_model_gpt</item>
+        <item>@string/pref_model_davinci</item>
+    </string-array>
+
+    <string-array name="pref_model_values">
+        <item>GPT</item>
+        <item>DaVinci</item>
+    </string-array>
+</resources>

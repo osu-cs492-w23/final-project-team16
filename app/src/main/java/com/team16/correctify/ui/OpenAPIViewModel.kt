@@ -32,4 +32,15 @@ class OpenAPIViewModel : ViewModel() {
             _loadingStatus.value = LoadingStatus.SUCCESS
         }
     }
+
+    fun fixTextMistakesDavinci(
+        prompt: String
+    ) {
+        viewModelScope.launch {
+            _loadingStatus.value = LoadingStatus.LOADING
+            val result = repository.fixTextMistakesDavinci(prompt)
+            _lastResponse.value = result
+            _loadingStatus.value = LoadingStatus.SUCCESS
+        }
+    }
 }
