@@ -61,10 +61,9 @@ class FirstFragment : Fragment() {
         submitButton.setOnClickListener {
             val prompt = promptTextView?.editText?.text.toString()
             if (prompt.isNotEmpty()) {
-                if(modelName == "GPT") {
+                if (modelName == "GPT") {
                     viewModel.fixTextMistakes(prompt)
-                }
-                else {
+                } else {
                     viewModel.fixTextMistakesDavinci(prompt)
                 }
             } else {
@@ -127,11 +126,6 @@ class FirstFragment : Fragment() {
             }
         }
     }
-
-//    override fun onResume() {
-//        super.onResume()
-//
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
