@@ -44,38 +44,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         binding.fab.setOnClickListener {
-            // https://gist.github.com/codinginflow/6c13bd0d08416115798f17d45b5d8056
-
-            // Saves the output of the output as "output.txt"
-            // Data stored on: "/data/data/com.team16.correctify/files/output.txt"
-            val FILE_NAME = "output.txt"
-
-            val mEditText = findViewById<TextView>(R.id.result_text)
-
-            val text: String = mEditText.getText().toString()
-            var fos: FileOutputStream? = null
-
-            try {
-                fos = openFileOutput(FILE_NAME, MODE_PRIVATE)
-                fos.write(text.toByteArray())
-                // mEditText.getText().clear()
-                Toast.makeText(
-                    this, "Saved to $filesDir/$FILE_NAME",
-                    Toast.LENGTH_LONG
-                ).show()
-            } catch (e: FileNotFoundException) {
-                e.printStackTrace()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            } finally {
-                if (fos != null) {
-                    try {
-                        fos.close()
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                }
-            }
+            saveText()
         }
 
         supportActionBar?.title = getString(R.string.app_name)
@@ -97,5 +66,40 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    fun saveText() {
+        // https://gist.github.com/codinginflow/6c13bd0d08416115798f17d45b5d8056
+
+        // Saves the output of the output as "output.txt"
+        // Data stored on: "/data/data/com.team16.correctify/files/output.txt"
+        val FILE_NAME = "output.txt"
+
+        val mEditText = findViewById<TextView>(R.id.result_text)
+
+        val text: String = mEditText.getText().toString()
+        var fos: FileOutputStream? = null
+
+        try {
+            fos = openFileOutput(FILE_NAME, MODE_PRIVATE)
+            fos.write(text.toByteArray())
+            // mEditText.getText().clear()
+            Toast.makeText(
+                this, "Saved to $filesDir/$FILE_NAME",
+                Toast.LENGTH_LONG
+            ).show()
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+        }
     }
 }
