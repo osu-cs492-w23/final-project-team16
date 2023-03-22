@@ -118,5 +118,4 @@ class OpenAPIRepository(
 
         return edit.choices[0].text
     }
-
 }

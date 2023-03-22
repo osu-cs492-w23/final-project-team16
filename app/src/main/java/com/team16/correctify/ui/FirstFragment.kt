@@ -51,7 +51,7 @@ class FirstFragment : Fragment() {
         val modelNameLabel: TextView = view.findViewById(R.id.model_name)
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val modelName = prefs.getString("model", null)
+        val modelName = prefs.getString("model", getString(R.string.pref_model_default))
 
         wordCount.text = getString(R.string.word_count, 0, 4000)
         clearButton.isEnabled = false
