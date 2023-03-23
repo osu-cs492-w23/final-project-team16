@@ -10,7 +10,7 @@
         android:name="com.team16.correctify.ui.FirstFragment"
         android:label="Correctify"
         tools:layout="@layout/fragment_first" />
-
+    
     <fragment
         android:id="@+id/SettingsFragment"
         android:name="com.team16.correctify.ui.SettingsFragment"

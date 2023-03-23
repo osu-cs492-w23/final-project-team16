@@ -1,6 +1,5 @@
 package com.team16.correctify.data
 
-import android.util.Log
 import com.aallam.openai.api.BetaOpenAI
 import com.aallam.openai.api.chat.ChatCompletion
 import com.aallam.openai.api.chat.ChatCompletionRequest
@@ -97,7 +96,6 @@ class OpenAPIRepository(
             val completion: ChatCompletion = openAI.chatCompletion(chatCompletionRequest)
             return completion.choices[0].message!!.content
         } catch (e: Exception) {
-            Log.d("OpenAPI", "Error: ${e.message}")
         }
 
         return prompt
@@ -113,8 +111,6 @@ class OpenAPIRepository(
                 instruction = "Fix the spelling and grammar mistakes"
             )
         )
-
-        Log.d("EditResult", edit.toString())
 
         return edit.choices[0].text
     }

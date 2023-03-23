@@ -2,7 +2,6 @@ package com.team16.correctify.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -62,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return when (item.itemId) {
-            R.id.action_settings ->  {
+            R.id.action_settings -> {
                 navController.navigate(R.id.SettingsFragment)
                 true
             }
@@ -83,7 +82,10 @@ class MainActivity : AppCompatActivity() {
         val resultText = this.findViewById<TextView>(R.id.result_text)?.text.toString()
 
         if (resultText == "") {
-            showSnackbar("Sorry, you have to submit a prompt first!", this.findViewById<View>(R.id.main_constraint_layout))
+            showSnackbar(
+                "Sorry, you have to submit a prompt first!",
+                this.findViewById<View>(R.id.main_constraint_layout)
+            )
             return
         }
 
@@ -114,7 +116,7 @@ class MainActivity : AppCompatActivity() {
 
         val mEditText = findViewById<TextView>(R.id.result_text)
 
-        val text: String = mEditText.getText().toString()
+        val text: String = mEditText.text.toString()
         var fos: FileOutputStream? = null
 
         try {

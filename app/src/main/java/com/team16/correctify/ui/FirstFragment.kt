@@ -1,12 +1,9 @@
 package com.team16.correctify.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -110,11 +107,6 @@ class FirstFragment : Fragment() {
                     submitButton.isEnabled = false
                 }
                 LoadingStatus.SUCCESS -> {
-                    Log.d(
-                        "FinishedMistakes",
-                        "Response received: " + viewModel.lastResponse.value.toString()
-                    )
-
                     loadingIndicator.visibility = View.INVISIBLE
                     submitButton.isEnabled = true
 
@@ -122,14 +114,10 @@ class FirstFragment : Fragment() {
                         resultText.text = viewModel.lastResponse.value.toString()
                     }
                 }
-                else -> {
-                    Log.d("FinishedMistakes", "Request failed?")
-                }
+                else -> {}
             }
         }
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()
