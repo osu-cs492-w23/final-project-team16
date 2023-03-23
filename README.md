@@ -7,10 +7,19 @@ Correctify is an AI powered tool that fixes writing errors such as spelling and 
 
 # Authors
 
-Robert Houeland
+Robert Houeland, Alec BuSteed, Dylan Karambut, Daniel Piper
 
-Alec BuSteed
+# Features
 
-Dylan Karambut
+- Fix writing errors in up to 4000 words of text
+- Paste in paragraphs or an essay
+- Copy processed text to elsewhere
+- Share processed text to another app
+- Save processed text to a .txt file on your device
+- Change AI model in settings
 
-Daniel Piper
+# Screenshots
+
+<img src="https://i.imgur.com/b3y4RfT.png" alt= “” width="300" height="650">
+
+<img src="https://i.imgur.com/vSXupED.png" alt= “” width="300" height="650">
